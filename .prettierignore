@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+
+# Next.js build files
+.next/
+out/
+build/
+
+# TypeScript declaration files
+*.d.ts
+
+# 公共資源或第三方庫
+public/
