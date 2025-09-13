@@ -4,11 +4,13 @@ import type { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
 import { config } from './config/app.config';
+import connectDB from './config/db.config';
 // import mongoose from 'mongoose';
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+// 連接數據庫
+connectDB();
 
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -43,6 +45,6 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 // 啟動伺服器
-app.listen(config.PORT, () => {
+app.listen(config.PORT, async () => {
   console.log(`Server is running on port ${config.PORT} in ${config.NODE_ENV}`);
 });
