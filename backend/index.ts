@@ -5,7 +5,9 @@ import cors from 'cors';
 import cookieSession from 'cookie-session';
 import { config } from './config/app.config';
 import connectDB from './config/db.config';
-// import mongoose from 'mongoose';
+import { notFound, errorHandler } from './middleware/errorMiddleware';
+import { asyncHandler } from './middleware/asyncMiddleware';
+import { HTTPSTATUS } from './config/http.config';
 
 // 連接數據庫
 connectDB();
@@ -40,9 +42,16 @@ app.use(
 //   .catch((error) => console.error('MongoDB connection error:', error));
 
 // 基本路由
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).json({ message: 'Hello TypeScript Backend!' });
-});
+app.get(
+  '/',
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    res.status(HTTPSTATUS.OK).json({ message: 'Hello TypeScript Backend!' });
+  })
+);
+
+// 錯誤處理
+app.use(notFound); // not found
+app.use(errorHandler); // 全局錯誤
 
 // 啟動伺服器
 app.listen(config.PORT, async () => {

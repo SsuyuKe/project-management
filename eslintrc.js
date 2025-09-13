@@ -16,7 +16,10 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
+    'max-classes-per-file': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/default-param-last': 'off',
+    'default-param-last': 'off',
     'prettier/prettier': [
       'error',
       {
