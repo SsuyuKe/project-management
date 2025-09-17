@@ -1,6 +1,10 @@
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+'use client';
 
-export default function Home() {
-  return <div>Home</div>;
+export default function DashboardPage() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      <p>Welcome to your project dashboard!</p>
+    </div>
+  );
 }

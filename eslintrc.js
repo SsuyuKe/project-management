@@ -29,23 +29,33 @@ module.exports = {
         printWidth: 100,
       },
     ],
+    // 忽略 import 的副檔名檢查
     'import/extensions': [
-      // 忽略 import 的副檔名檢查
       'error',
       'ignorePackages',
       {
         js: 'never',
+        jsx: 'never',
         ts: 'never',
+        tsx: 'never',
       },
     ],
     'import/prefer-default-export': 'off', // 關閉單一 export 的強制 default
+    'no-shadow': 'off', // 關閉變數 shadow
+    'no-param-reassign': 'off', // 允許修改函數參數
+    '@typescript-eslint/no-shadow': 'off', // TS 版本 shadow
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: true, variables: true },
+    ],
   },
   settings: {
     'import/resolver': {
-      // 確保 TypeScript resolver 有被啟用
       typescript: {
         alwaysTryTypes: true,
         project: ['./frontend/tsconfig.json', './backend/tsconfig.json'],
+        extensions: ['.ts', '.tsx', '.d.ts', '.js', '.jsx'],
       },
     },
   },
